@@ -59,22 +59,7 @@ module.exports = {
 
     },
 
-    async upload(req, res) {
-
-         
-        const {id} = req.params;
-        const company_id = req.headers.company_id;
-
-        const caso =  await dataBaseTable('cases').where('id', id)
-                            .select('companies_id').first();
-
-        if (caso.companies_id !== company_id) {
-            return res.status(401).json({error: 'Operacao nao permitida'});
-        }
-
-        await dataBaseTable('cases').where('id', id).update('filename', req.file.filename);
-        return res.status(200).send();
-    },
+     
 
     
 }
